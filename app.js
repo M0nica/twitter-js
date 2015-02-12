@@ -8,10 +8,11 @@ var swig = require ('swig');
 var app = express();
 
 //swig.renderFile renders html
- app.engine('html', require('swig').renderFile);
+app.engine('html', require('swig').renderFile);
+
 
  //sets default view engine to html
- app.set('view engine', 'html');
+app.set('view engine', 'html');
  //this maps 
 
 //this path maps the views to our views path
@@ -23,8 +24,8 @@ app.set('views', __dirname + '/views');
 swig.setDefaults({ cache: false });
 
 //pass a local variable to the view 
-var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
-res.render('index', {title: 'Hall of Fame', people: people});
+//var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+//res.render('index', {title: 'Hall of Fame', people: people});
 
 
 //dev creates color coded status messages
@@ -42,7 +43,9 @@ app.listen(3000, function(){
 //get handler for when the browser requests / or "root"
 
 app.get('/', function(req, res){
-	res.send("hello, world");
+	//res.send("hello, world");
+	var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+    res.render('index', {title: 'Hall of Fame', people: people})
 })
 
 app.get('/news', function(req,res){
