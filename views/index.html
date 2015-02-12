@@ -1,0 +1,10 @@
+<!-- pass a local variable to the view -->
+var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+res.render('index', {title: 'Hall of Fame', people: people});
+<h1>{{ title }}</h1>
+<p>This is a bare-bones template.</p>
+<ul>
+{% for person in people %}
+  <li>{{ person.name }}</li>
+{% endfor %}
+</ul>
