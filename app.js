@@ -2,10 +2,16 @@
 var express = require ( 'express' );
 var morgan = require( 'morgan' );
 var swig = require ('swig');
+var routes = require('./routes/')
 
 
 //initialize app
 var app = express();
+app.use('/', routes);
+
+//checks if a request URI path matches a filepath in the public directory;
+// if so, it sends that file back as-is
+app.use(express.static(__dirname + '/public'));
 
 //swig.renderFile renders html
 app.engine('html', require('swig').renderFile);
@@ -42,6 +48,7 @@ app.listen(3000, function(){
 //HTTP requests
 //get handler for when the browser requests / or "root"
 
+/* old routes
 app.get('/', function(req, res){
 	//res.send("hello, world");
 	var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
@@ -50,4 +57,4 @@ app.get('/', function(req, res){
 
 app.get('/news', function(req,res){
 	res.send("News is coming soon!");
-})
+})*/

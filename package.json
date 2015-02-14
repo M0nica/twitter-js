@@ -1,18 +1,19 @@
 {
   "name": "twitter-clone",
   "version": "1.0.0",
-  "description": "",
+  "description": "a twitter clone",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Monica Powell",
   "license": "ISC",
   "dependencies": {
     "express": "^4.11.2",
     "morgan": "^1.5.1",
     "nodemon": "^1.3.6",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "underscore": "^1.7.0"
   }
 }
