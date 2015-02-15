@@ -2,12 +2,19 @@
 var express = require ( 'express' );
 var morgan = require( 'morgan' );
 var swig = require ('swig');
-var routes = require('./routes/')
+var routes = require('./routes/');
+//var bodyParser = require('body-parser');
 
 
 //initialize app
 var app = express();
+
+
+
+
+
 app.use('/', routes);
+
 
 //checks if a request URI path matches a filepath in the public directory;
 // if so, it sends that file back as-is
@@ -26,6 +33,8 @@ app.set('view engine', 'html');
  //app.set('views', 'twitter-js' + '/views');
 app.set('views', __dirname + '/views');
 
+
+
 //turn of caching during development
 swig.setDefaults({ cache: false });
 
@@ -39,10 +48,16 @@ swig.setDefaults({ cache: false });
 //https://github.com/expressjs/morgan#dev
 app.use(morgan('dev'))
 
+
+
+
+
 //app is listening for requests on port 3000
 app.listen(3000, function(){
 	console.log("I'm listening now.");
 });
+
+
 
 //this tells the server what to do with
 //HTTP requests

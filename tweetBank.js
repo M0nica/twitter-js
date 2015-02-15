@@ -5,8 +5,9 @@ var data = [];
 var id;
 var add = function (name, text){
   id = Math.floor((Math.random() * 100) + 1);
-  data.push({ name: name, text: text, id: id});
-  console.log("name:" + name + " id: " + id);
+  data.unshift({ name: name, text: text, id: id});
+  //printed out name and id for testing purposes
+  //console.log("name:" + name + " id: " + id);
 
 
 };
@@ -41,5 +42,6 @@ var getFakeTweet = function() {
 for(var i=0; i<10; i++) {
   module.exports.add( getFakeName(), getFakeTweet() );
 }
+
 
 /*console.log(data);*/
