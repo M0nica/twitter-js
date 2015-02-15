@@ -5,15 +5,17 @@ var swig = require ('swig');
 var routes = require('./routes/');
 //var bodyParser = require('body-parser');
 
-
+//var io = ('socket.io');
 //initialize app
 var app = express();
 
 
 
+//var router = routes(io);
+// app.use( '/', router );
 
 
-app.use('/', routes);
+//app.use('/', routes);
 
 
 //checks if a request URI path matches a filepath in the public directory;
@@ -53,9 +55,16 @@ app.use(morgan('dev'))
 
 
 //app is listening for requests on port 3000
-app.listen(3000, function(){
+var server = app.listen(3000, function(){
 	console.log("I'm listening now.");
 });
+
+
+var socketio = require('socket.io');
+//var server = app.listen(3000);
+var io = socketio.listen(server);
+//use io after defining io
+app.use( '/', routes(io) );
 
 
 

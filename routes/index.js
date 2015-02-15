@@ -1,7 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var router = express.Router();
+
 //could use one line instead: var router = reqire('express').Router();
+
+
+//module.exports = function (io) {
 
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
@@ -16,7 +20,8 @@ router.get('/', function(req,res){
 	res.render( 'index', { title: 'Twitter.js', tweets: tweets, showForm: true } );
 });
 
-module.exports = router;
+module.exports = function (io) {
+//module.exports = router;
 
 router.get('/users/:name', function(req, res) {
   var name = req.params.name;
@@ -38,9 +43,25 @@ router.post('/submit', function(req, res) {
   JSON.stringify(req.body, null, 2);
   var name = req.body.name;
   var text = req.body.text;
-  tweetBank.add(name, text);
-
-
+ 
+  io.sockets.emit('new_tweet', { name: name, text: text });
+   tweetBank.add(name, text);
+ 
   //redirects to homepage 
   res.redirect('/');
 });
+
+
+  //JSON.stringify(req.body, null, 2);
+  //var name = req.body.name;
+  //var text = req.body.text;
+    //res.render( 'index', { title: 'Twitter.js - Posts by '+name , tweets: list, showForm: true } );
+  //tweetBank.add(name, text);
+
+ //});
+
+ return router;
+};
+
+ // return router;
+//};
